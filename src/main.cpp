@@ -23,16 +23,13 @@ public:
             return matrix[0].size();
     }
 
-    Matrix getTranspose()
+    Matrix *getTranspose()
     {
-        Matrix transpose = Matrix(getN(), getM());
+        Matrix *transpose = new Matrix(getN(), getM());
 
-        int n = transpose.getN();
-        int m = transpose.getM();
-
-        for (int i = 0; i < transpose.getM(); i++)
-            for (int j = 0; j < transpose.getN(); j++)
-                transpose.matrix[i][j] = matrix[j][i];
+        for (int i = 0; i < transpose->getM(); i++)
+            for (int j = 0; j < transpose->getN(); j++)
+                transpose->matrix[i][j] = matrix[j][i];
 
         return transpose;
     }
@@ -65,13 +62,13 @@ Matrix::Matrix(int m, int n)
 
 int main(int argc, char const *argv[])
 {
-    Matrix test = Matrix({{2, 7, 3.4, sqrt(2)}, {5, 0, 4, 1}});
+    Matrix *test = new Matrix({{2, 7, 3.4, sqrt(2)}, {5, 0, 4, 1}});
 
-    std::cout << test.matrix[0][1] << std::endl;
+    std::cout << test->matrix[0][1] << std::endl;
 
-    Matrix transpose = test.getTranspose();
+    Matrix *transpose = test->getTranspose();
 
-    std::cout << transpose.matrix[3][1] << std::endl;
+    std::cout << transpose->matrix[3][1] << std::endl;
 
     return 0;
 }
